@@ -4,9 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "npx ts-node --esm src/index.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

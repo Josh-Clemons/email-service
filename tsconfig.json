@@ -18,7 +18,8 @@
     "noUnusedLocals": true,                   // Throw error if there are unused local variables
     "noUnusedParameters": true,               // Throw error if there are unused function parameters
     "noFallthroughCasesInSwitch": true,       // Prevent fallthrough in switch statements
-    "noUncheckedSideEffectImports": true      // Prevent importing modules with unchecked side effects
+    "noUncheckedSideEffectImports": true,     // Prevent importing modules with unchecked side effects
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],                         // Include all files from the 'src' directory
   "exclude": ["node_modules"]                 // Exclude node_modules folder

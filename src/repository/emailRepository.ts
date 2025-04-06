@@ -18,7 +18,7 @@ import {Email} from "../types/email.ts";
 import {Client} from "pg";
 
 export async function getEmails(client: Client): Promise<Email[]> {
-    const result = await client.query('SELECT * FROM emails');
+    const result = await client.query('SELECT * FROM email');
     return result.rows.map((row) => ({
         ...row,
         sent_at: row.sent_at ? new Date(row.sent_at) : null,

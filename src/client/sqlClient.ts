@@ -1,6 +1,7 @@
-import { Client } from 'pg';
+import pg from 'pg';
+const { Client } = pg;
 
-export function getSqlClient() : Client {
+export function getSqlClient() : pg.Client {
     return new Client({
         host: 'localhost',
         port: 5432,
@@ -10,7 +11,7 @@ export function getSqlClient() : Client {
     })
 }
 
-export async function startConnection(sqlClient: Client): Promise<void> {
+export async function startConnection(sqlClient: pg.Client): Promise<void> {
     try {
         await sqlClient.connect();
         console.log("Connected to the database: ", sqlClient.database);
@@ -19,7 +20,7 @@ export async function startConnection(sqlClient: Client): Promise<void> {
     }
 }
 
-export async function endConnection(sqlClient: Client): Promise<void> {
+export async function endConnection(sqlClient: pg.Client): Promise<void> {
     try {
         await sqlClient.end();
         console.log("Disconnected from the database");

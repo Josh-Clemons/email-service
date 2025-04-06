@@ -4,12 +4,17 @@ import {getEmails} from "./repository/emailRepository.ts";
 
 async function main(): Promise<void> {
     const sqlClient = getSqlClient();
-    await startConnection(sqlClient);
 
-    const emails = await getEmails(sqlClient);
-    console.log(emails);
+    try {
+        await startConnection(sqlClient);
+        const emails = await getEmails(sqlClient);
+        console.log(emails);
 
-    await endConnection(sqlClient);
+    } catch(e) {
+        console.error("Error in main: ", e);
+    } finally {
+        await endConnection(sqlClient);
+    }
 }
 
 main().then(() => {
