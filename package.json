@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npx ts-node --esm src/index.ts"
+    "dev": "npx ts-node --esm src/index.ts",
+    "oauth": "npx ts-node --esm src/oauth.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
