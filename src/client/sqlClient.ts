@@ -1,4 +1,5 @@
 import pg from 'pg';
+import {logger} from "../service/logger.ts";
 const { Client } = pg;
 
 export function getSqlClient() : pg.Client {
@@ -14,17 +15,17 @@ export function getSqlClient() : pg.Client {
 export async function startConnection(sqlClient: pg.Client): Promise<void> {
     try {
         await sqlClient.connect();
-        console.log("Connected to the database: ", sqlClient.database);
+        logger.info("Connected to the database %s", sqlClient.database);
     } catch (e) {
-        console.error("Error connecting to the database: ", e);
+        logger.error("Error connecting to the database: ", e);
     }
 }
 
 export async function endConnection(sqlClient: pg.Client): Promise<void> {
     try {
         await sqlClient.end();
-        console.log("Disconnected from the database");
+        logger.info("Disconnected from the database");
     } catch (e) {
-        console.error("Error disconnecting from the database: ", e);
+        logger.error("Error disconnecting from the database: ", e);
     }
 }

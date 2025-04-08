@@ -1,9 +1,10 @@
 import {endConnection, getSqlClient, startConnection} from "./client/sqlClient.ts";
 import {sendNewEmails} from "./service/emailService.ts";
+import {logger} from "./service/logger.ts";
 
 
 async function main(): Promise<void> {
-    console.log("Starting email service");
+    logger.info("Starting email service");
     const sqlClient = getSqlClient();
 
     try {
@@ -11,14 +12,14 @@ async function main(): Promise<void> {
         await sendNewEmails(sqlClient);
 
     } catch(e) {
-        console.error("Error in main: ", e);
+        logger.error("Error in main: ", e);
     } finally {
         await endConnection(sqlClient);
     }
 }
 
 main().then(() => {
-    console.log("Until next time chicken f*cker!");
+    logger.info("Until next time chicken f*cker!");
 }).catch((e) => {
-    console.error(e);
+    logger.error("Error in main: ", e);
 });

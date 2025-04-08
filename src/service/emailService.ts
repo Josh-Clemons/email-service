@@ -3,6 +3,7 @@ import transporter from "../client/emailClient.ts";
 import {SendMailOptions} from "nodemailer";
 import {getUnsentEmails, updateEmailSentStatus} from "../repository/emailRepository.ts";
 import {Client} from "pg";
+import {logger} from "./logger.ts";
 
 
 async function getNewEmails(sqlClient: Client): Promise<Email[]> {
@@ -13,7 +14,7 @@ export async function sendNewEmails(sqlClient: Client): Promise<boolean> {
     const emails: Email[] = await getNewEmails(sqlClient);
 
     if(emails.length === 0) {
-        console.log("No new emails to send");
+        logger.info("No new emails to send");
         return true;
     }
 
@@ -27,15 +28,15 @@ export async function sendNewEmails(sqlClient: Client): Promise<boolean> {
 
         try {
             const info = await transporter.sendMail(mailOptions);
-            console.log("Email sent: ", info);
+            logger.info("Email sent: ", info);
             try {
                 await updateEmailSentStatus(sqlClient, email.id);
             } catch (err) {
-                console.error("Error updating email status: ", err);
+                logger.error("Error updating email status: ", err);
                 return false;
             }
         } catch (err) {
-            console.error("Error sending email: ", err);
+            logger.error("Error sending email: ", err);
             return false;
         }
     }
