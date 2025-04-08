@@ -10,10 +10,11 @@ const oAuth2Client = new google.auth.OAuth2(
 
 const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/gmail.send'],
+    prompt: 'consent',
+    scope: ['https://mail.google.com/'],
 });
-
 console.log('Authorize this app by visiting this url:', authUrl);
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -21,7 +22,7 @@ const rl = readline.createInterface({
 
 rl.question('\nEnter the code from the page here: ', async (code) => {
     try {
-        const { tokens } = await oAuth2Client.getToken(code.trim());
+        const { tokens } = await oAuth2Client.getToken(decodeURIComponent(code.trim()));
         oAuth2Client.setCredentials(tokens);
 
         console.log('\nTokens received:');
