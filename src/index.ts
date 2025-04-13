@@ -20,6 +20,8 @@ async function main(): Promise<void> {
 
 main().then(() => {
     logger.info("Until next time chicken f*cker!");
+    process.exit(0);
 }).catch((e) => {
     logger.error("Error in main: ", e);
+    process.exit(1);
 });

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                      // Use ES2020 features
+    "target": "ES2020",                       // Use ES2020 features
     "useDefineForClassFields": true,          // For using the correct semantics for class fields
     "module": "ESNext",                       // Use ESNext for modern module system
     "lib": ["ES2020", "DOM", "DOM.Iterable"], // Standard lib files
@@ -8,19 +8,19 @@
 
     /* Bundler mode */
     "moduleResolution": "node",               // Use Node.js module resolution (for `require()` and `import`)
-    "allowImportingTsExtensions": true,       // Allow importing TypeScript files with extensions
-    "isolatedModules": true,                  // Ensure isolated modules for Vite compatibility
-    "moduleDetection": "force",               // Force detection of modules
-    "noEmit": true,                           // Don't emit JS (Vite handles the bundling)
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": false,
 
     /* Linting */
-    "strict": true,                           // Enable strict mode for better type safety
-    "noUnusedLocals": true,                   // Throw error if there are unused local variables
-    "noUnusedParameters": true,               // Throw error if there are unused function parameters
-    "noFallthroughCasesInSwitch": true,       // Prevent fallthrough in switch statements
-    "noUncheckedSideEffectImports": true,     // Prevent importing modules with unchecked side effects
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],                         // Include all files from the 'src' directory
-  "exclude": ["node_modules"]                 // Exclude node_modules folder
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
